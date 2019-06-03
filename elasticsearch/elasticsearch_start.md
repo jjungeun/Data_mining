@@ -1,18 +1,65 @@
 Elasticsearch 공식 문서를 보며 시작해 보자!
 
-1. 매핑하기
-타입의 매핑을 설정한다. 직접 설정할 수도 있고 한개의 샘플 데이터를 넣어 자동 매핑할 수도 있다. 그러나 한번 정해진 매핑은 변경할 수 없음!
+관계형 db와 비교
 
-PUT engnews/1 
-{
-  "news": "매일경제",
-  "word": "",
-  "topic": "",
-  "summary": "This is good man!",
-  "reg_date": "2018-03-01"
-}
+Index - Database
 
-2. Index Template 만들기
-인덱스 템플릿은 인덱스를 새로 생성할때마다 미리 작성된 매핑으로 적용하는 것이다.
+Type - Table
 
-기존에 공통적인 매핑정보를 만들고 새로운 매핑을 추가하는 방법으로 새 인덱스를 만들 수도 있다.
+Field - Column
+
+Document - row
+
+Analyze - Index
+
+_id - Primary key
+
+Mapping - Schema
+
+Shard - Pyhsical partition
+
+Route - Logical partition
+
+
+
+1. 인덱스 생성과 타입 설정(Mapping)
+
+   ```
+   PUT /news
+   {
+   	"settings" :{
+   		"number_of_shards" : "5",
+   		"number_of_replicas" : "2"
+   	},
+   	"properties": {
+           "url":     {"type": "text"},
+           "title":   {"type": "text"},
+           "summary": {"type": "text"},
+           "topic":   {"type": "text"},
+           "reg_date":{"type": "date","format": "yyyy-MM-dd"}
+        }
+   }
+   ```
+
+   이렇게 샤드를 5개, 리플리카를 2개로 설정하고 인덱스를 생성한다.
+
+   타입의 매핑을 설정한다. 직접 설정할 수도 있고 한개의 샘플 데이터를 넣어 자동 매핑할 수도 있다. 그러나 한번 정해진 매핑은 변경할 수 없음!
+
+   
+
++ 인덱스 템플릿
+  인덱스 템플릿은 인덱스를 새로 생성할때마다 미리 작성된 매핑으로 적용하는 것이다. 기존에 공통적인 매핑정보를 만들고 새로운 매핑을 추가하는 방법으로 새 인덱스를 만들 수도 있다.
+
+
+
+2. 노드 2개 추가
+
+   마스터 노드와 같은 버전의 elasticsearch를 2개 더 설치한다. 
+
+   elasticsearch.yml파일을 복사 붙여넣기 하여 운영중인 노드들과 동일한 설정을 한다. node.name은 각각 유니크하게 설정한다.
+
+   discovery.zen.minimum_master_nodes를 2로 설정한다.
+
+   기존 노드가 재시작하는 경우를 대비하여 기존 노드의 yml파일의 discovery.zen.ping.unicast.hosts에 신규 노드의 IP를 추가한다.
+
+   
