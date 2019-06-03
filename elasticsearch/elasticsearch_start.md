@@ -108,3 +108,37 @@ Kibana dev tool을 사용함
    기존 노드가 재시작하는 경우를 대비하여 기존 노드의 yml파일의 discovery.zen.ping.unicast.hosts에 신규 노드의 IP를 추가해도 된다.
 
    
+   
+   error !
+   
+   yml파일을 다음과 같이 설정하고 elasticsearch를 실행했는데 마스터 노드를 못찾는다ㅠ
+   
+   ```
+   cluster.name: elasticsearch
+   cluster.initial_master_nodes: node-1
+   node.name: node-2
+   discovery.zen.ping.unicast.hosts : ["203.253.25.63:9200"]
+   discovery.zen.minimum_master_nodes : 2
+   ```
+   
+   ```
+   curl -XGET "localhost:9200/_cat/health?v&pretty"
+   
+   {
+     "error" : {
+       "root_cause" : [
+         {
+           "type" : "master_not_discovered_exception",
+           "reason" : null
+         }
+       ],
+       "type" : "master_not_discovered_exception",
+       "reason" : null
+     },
+     "status" : 503
+   }
+   ```
+   
+   
+   
+   
