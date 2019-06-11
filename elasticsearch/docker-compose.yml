@@ -1,0 +1,92 @@
+version: '2.2'
+services:
+  elasticsearch:
+    image: elasticsearch:6.5.4
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - node.name=master-node1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    stdin_open: true
+    tty: true
+    networks:
+      - esnet
+  elasticsearch2:
+    image: elasticsearch:6.5.4
+    container_name: elasticsearch2
+    environment:
+      - cluster.name=docker-cluster
+      - node.name=data-node1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+    ports:
+      - 9301:9300
+    stdin_open: true
+    tty: true
+    depends_on:
+      - elasticsearch
+  elasticsearch3:
+    image: elasticsearch:6.5.4
+    container_name: elasticsearch3
+    environment:
+      - cluster.name=docker-cluster
+      - node.name=data-node2
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+    ports:
+      - 9302:9300
+    stdin_open: true
+    tty: true
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    container_name: kibana
+    image: kibana:6.5.4
+    ports:
+      - 5601:5601
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+      - elasticsearch2
+      - elasticsearch3
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+  esdata3:
+    driver: local
+
+networks:
+  esnet:
