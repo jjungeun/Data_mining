@@ -1,4 +1,4 @@
-Elasticsearch 공식 문서를 보며 시작해 보자!
+(이 문서는 depricated 문서입니다. elastic_docker.md문서를 참고하세요.)
 
 관계형 db와 비교
 

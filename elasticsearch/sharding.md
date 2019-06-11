@@ -1,3 +1,4 @@
+(이 문서는 depricated 문서입니다. elastic_docker.md문서를 참고하세요.)
 # Elastic search 샤딩
 
 
@@ -66,6 +67,7 @@ discovery.zen.ping.unicast.hosts: ["localhost:9301", "localhost:9303"]
 
 ​		그리고 elasticstack의 버전도 동일해야한다.
 
+<<<<<<< HEAD
 **참고 :<http://kimjmin.net/2018/01/2018-01-build-es-cluster-3/> aws 서버 이미지 복사를 사용하여 노드추가**
 
 
@@ -74,3 +76,8 @@ discovery.zen.ping.unicast.hosts: ["localhost:9301", "localhost:9303"]
 
 [https://www.elastic.co/downloads]에서 모두 같은 버전의 ES를 다운받아 압축해제한다.
 
+=======
+### 따라서 elastic_docker.md문서에서 docker를 사용해 클러스터링, 샤딩을 진행한다!! 
+
+**참고 :<http://kimjmin.net/2018/01/2018-01-build-es-cluster-3/> aws 서버 이미지 복사를 사용하여 노드추가**
+>>>>>>> 67b303a4bccd5f2c4d76466f72c5909d773ede37
