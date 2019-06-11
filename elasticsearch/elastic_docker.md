@@ -209,18 +209,18 @@ $ sudo docker inspect elasticsearch
 
 두번째 명령어를 실행해서 컨테이너들에 대한 정보를 얻어 컨테이너 ip를 알아본다. 컨테이너 ip는 NetworkSettings의 Networks의 IPAddress를 보면 된다.
 
-![1560243223788](/home/jungeun/.config/Typora/typora-user-images/1560243223788.png)
+![1560243223788](../img/1560243223788.png)
 
 나의 master-node의 ip주소는 172.22.0.2이므로 이 주소로 get요청을 보내보면 다음과 같은 응답을 받게 된다.
 
-![1560243072025](/home/jungeun/.config/Typora/typora-user-images/1560243072025.png)
+![1560243072025](../img/1560243072025.png)
 
 클러스터 정보도 얻을 수 있다.
 
-![1560243307370](/home/jungeun/.config/Typora/typora-user-images/1560243307370.png)
+![1560243307370](../img/1560243307370.png)
 
 3개의 노드가 잘 클러스터링 된 것을 확인 할 수 있다. 다른 노드들에서도 정상적인 응답이 오는지 확인해본다. 
 
 kibana의 ip address:5601로 접속해보면 다음과 같이 노드 3개가 잘 클러스터링 된 것을 확인할 수 있다.
 
-![1560242926553](/home/jungeun/.config/Typora/typora-user-images/1560242926553.png)
+![1560242926553](../img/1560242926553.png)

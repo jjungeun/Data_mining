@@ -67,3 +67,10 @@ discovery.zen.ping.unicast.hosts: ["localhost:9301", "localhost:9303"]
 ​		그리고 elasticstack의 버전도 동일해야한다.
 
 **참고 :<http://kimjmin.net/2018/01/2018-01-build-es-cluster-3/> aws 서버 이미지 복사를 사용하여 노드추가**
+
+
+
+클러스터는 마스터노드 1개, 데이터 노드2개로 구성한다.
+
+[https://www.elastic.co/downloads]에서 모두 같은 버전의 ES를 다운받아 압축해제한다.
+
