@@ -66,4 +66,6 @@ discovery.zen.ping.unicast.hosts: ["localhost:9301", "localhost:9303"]
 
 ​		그리고 elasticstack의 버전도 동일해야한다.
 
+# 따라서 docker를 사용해 클러스터링, 샤딩을 진행한다!! elastic_docker.md
+
 **참고 :<http://kimjmin.net/2018/01/2018-01-build-es-cluster-3/> aws 서버 이미지 복사를 사용하여 노드추가**
