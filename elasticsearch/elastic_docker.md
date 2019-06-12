@@ -90,6 +90,7 @@ elasticsearch.yml파일을 수정하고 컨테이너를 재시작 하면 오류�
 
 ```
 $ sudo apt-get install docker-compose
+$ sudo docker pull kibana:6.5.4
 ```
 
 
