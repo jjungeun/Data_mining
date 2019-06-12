@@ -2,7 +2,7 @@
 
 # multi node 클러스터링하기
 
-두번째 시도에 성공하였다. 처음엔 그냥 컨테이너를 실행하고 exec로 컨테이너의 yaml파일을 수정해서 해보려고 했지만 실패했다. 컨테이너간의 설정을 해야할 경우엔 docker-compose를 이용하는 것이 편리하기 때문에 두번째 시도에서는  docker-compose를 이용해 마스터노드1개, 데이터 노드 2개를 클러스터링하는 작업을 해보았다. (시도1은 건너뛰어도 된다.)
+처음엔 그냥 컨테이너를 실행하고 exec로 컨테이너의 yaml파일을 수정해서 해보려고 했지만 실패했다. 컨테이너간의 설정을 해야할 경우엔 docker-compose를 이용하는 것이 편리하기 때문에 두번째 시도에서는  docker-compose를 이용해 마스터노드1개, 데이터 노드 2개를 클러스터링하는 작업을 해보았다. (시도1은 건너뛰어도 된다.)
 
 
 
@@ -46,7 +46,7 @@ node.master: true
 #minimum_master_nodes need to be explicitly set when bound on a public IP
 #set to 1 to allow single node clusters
 #Details: https://github.com/elastic/elasticsearch/pull/17288
-#discovery.zen.minimum_master_nodes: 1
+#discovery.zen.minimum_master_nodes: 2
 ```
 
 ```
@@ -65,7 +65,7 @@ index.number_of_replicas: 2
 #minimum_master_nodes need to be explicitly set when bound on a public IP
 #set to 1 to allow single node clusters
 #Details: https://github.com/elastic/elasticsearch/pull/17288
-#discovery.zen.minimum_master_nodes: 1
+#discovery.zen.minimum_master_nodes: 2
 ```
 
 
